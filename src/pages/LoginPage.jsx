@@ -55,7 +55,7 @@ const LoginPage = ({ onLogin }) => {
               <div className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/20">
                 <Globe size={20} className="text-white" />
               </div>
-              <span className="text-[14px] font-bold uppercase tracking-[0.2em]">Global Enterprise ERP</span>
+              <span className="text-[14px] font-bold uppercase tracking-[0.2em]">UAE Enterprise ERP</span>
             </div>
             
             <h1 className="text-5xl font-bold font-display leading-[1.1] mb-6 tracking-tight">
@@ -170,27 +170,32 @@ const LoginPage = ({ onLogin }) => {
               </button>
             </form>
 
-            {/* Demmo Credentials Helper */}
-            <div className="mt-10 p-5 bg-zinc-50 border border-zinc-200 rounded-2xl flex flex-col items-center gap-3">
-              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-1">Demo Access</span>
-              <div className="flex gap-4">
-                <div className="flex flex-col items-center">
-                  <span className="text-[11px] font-bold text-zinc-900 tracking-tight">admin</span>
-                  <span className="text-[10px] text-zinc-400">admin123</span>
+            {/* Demo Credentials Helper */}
+            <div className="mt-8 p-4 bg-zinc-50 border border-zinc-200 rounded-xl relative overflow-hidden">
+              <div className="flex flex-col items-center gap-3 relative z-10">
+                <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-[0.2em]">Demo Access Credentials</span>
+                <div className="flex items-center gap-6">
+                  <div className="flex flex-col items-center">
+                    <span className="text-[11px] font-bold text-zinc-900">admin</span>
+                    <span className="text-[10px] text-zinc-400 font-mono">admin123</span>
+                  </div>
+                  <div className="w-px h-5 bg-zinc-200" />
+                  <div className="flex flex-col items-center">
+                    <span className="text-[11px] font-bold text-zinc-900">hcc</span>
+                    <span className="text-[10px] text-zinc-400 font-mono">hcc_erp</span>
+                  </div>
                 </div>
-                <div className="w-px h-6 bg-zinc-200" />
-                <div className="flex flex-col items-center">
-                  <span className="text-[11px] font-bold text-zinc-900 tracking-tight">hcc</span>
-                  <span className="text-[10px] text-zinc-400">hcc_erp</span>
-                </div>
+              </div>
+              <div className="absolute top-0 right-0 p-1 opacity-[0.03] select-none pointer-events-none">
+                <ShieldCheck size={40} />
               </div>
             </div>
           </motion.div>
         </div>
 
         {/* Footer info */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 text-zinc-400">
-           <span className="text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">Cloud Middleware v4.1.0</span>
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-zinc-400 lg:bottom-6">
+           <span className="text-[9px] font-bold uppercase tracking-[0.15em] whitespace-nowrap opacity-60">Cloud Middleware v4.1.0 • UAE Compliant</span>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { LayoutDashboard, Receipt, Settings, BarChart3, Users, ChevronRight, Che
 import { cn } from '../../utils/cn';
 
 const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
-  const [expandedMenus, setExpandedMenus] = useState({ invoice: true });
+  const [expandedMenus, setExpandedMenus] = useState({ invoice: false });
 
   const toggleMenu = (menu) => {
     setExpandedMenus(prev => ({ ...prev, [menu]: !prev[menu] }));
@@ -14,26 +14,32 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
   };
 
   return (
-    <aside className="w-56 h-screen bg-white border-r border-[#eaeaea] flex flex-col sticky top-0 flex-shrink-0 z-20 custom-scrollbar overflow-y-auto overflow-x-hidden">
+    <aside className="w-64 h-screen bg-white border-r border-[#eaeaea] flex flex-col sticky top-0 flex-shrink-0 z-20 custom-scrollbar overflow-y-auto overflow-x-hidden">
       {/* Brand logo area */}
-      <div className="px-5 py-5 border-b border-[#eaeaea] flex-shrink-0 bg-white sticky top-0 z-10 transition-all duration-300">
-        <div className="flex flex-col items-center justify-center gap-2">
-          <img src="/logo.png" alt="HCC Logo" className="h-12 w-auto object-contain brightness-110" />
-          <div className="flex flex-col items-center">
-            <span className="text-[12px] font-bold text-zinc-900 tracking-tight text-center">{user?.name || 'HCC ERP'}</span>
-            <span className="text-[10px] font-medium text-zinc-400 uppercase tracking-widest text-center">{user?.role || 'Middleware'}</span>
+      <div className="px-4 py-5 border-b border-[#eaeaea] flex-shrink-0 bg-white sticky top-0 z-10 transition-all duration-300">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center p-1.5 flex-shrink-0 overflow-hidden">
+            <img src="/logo.png" alt="HCC Logo" className="h-full w-full object-contain brightness-110" />
+          </div>
+          <div className="flex flex-col min-w-0">
+            <span className="text-[13px] font-bold text-zinc-900 tracking-tight whitespace-nowrap truncate block leading-tight">
+              {user?.name || 'HCC ERP'}
+            </span>
+            <span className="text-[10px] font-medium text-zinc-400 uppercase tracking-widest truncate block leading-tight mt-0.5">
+              {user?.role || 'Middleware'}
+            </span>
           </div>
         </div>
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5">
-        <p className="px-3 text-[11px] font-semibold text-zinc-400 uppercase tracking-wider mb-2 mt-2">Menu</p>
+        <p className="px-4 text-[11px] font-semibold text-zinc-400 uppercase tracking-wider mb-2 mt-2">Menu</p>
         
 
         <button
           onClick={() => onTabChange('overview')}
           className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
+            "w-full flex items-center justify-between px-4 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
             activeTab === 'overview' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
           )}
         >
@@ -48,7 +54,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
           <button
             onClick={() => toggleMenu('invoice')}
             className={cn(
-              "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-semibold outline-none",
+              "w-full flex items-center justify-between px-4 py-2 rounded-md transition-colors duration-150 group text-[13px] font-semibold outline-none",
               isActiveGroup(['master', 'tx']) ? "text-zinc-900" : "text-zinc-700 hover:bg-zinc-50"
             )}
           >
@@ -133,7 +139,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
         <button
           onClick={() => onTabChange('dashboard')}
           className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
+            "w-full flex items-center justify-between px-4 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
             activeTab === 'dashboard' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
           )}
         >
@@ -146,7 +152,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
         <button
           onClick={() => onTabChange('alerts')}
           className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none mt-1",
+            "w-full flex items-center justify-between px-4 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none mt-1",
             activeTab === 'alerts' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
           )}
         >
@@ -159,7 +165,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
         <button
           onClick={() => onTabChange('error-management')}
           className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
+            "w-full flex items-center justify-between px-4 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
             activeTab === 'error-management' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
           )}
         >
@@ -172,7 +178,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
         <button
           onClick={() => onTabChange('usage-monitor')}
           className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none mt-1",
+            "w-full flex items-center justify-between px-4 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none mt-1",
             activeTab === 'usage-monitor' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
           )}
         >
@@ -185,7 +191,7 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
         <button
           onClick={() => onTabChange('audit-trail')}
           className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none mt-1",
+            "w-full flex items-center justify-between px-4 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none mt-1",
             activeTab === 'audit-trail' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
           )}
         >
@@ -195,39 +201,12 @@ const Sidebar = ({ activeTab, onTabChange, onLogout, user }) => {
           </div>
         </button>
 
-        <div className="w-full h-px bg-zinc-100 my-4"></div>
-
-        <button
-          onClick={() => onTabChange('companies')}
-          className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
-            activeTab === 'companies' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
-          )}
-        >
-          <div className="flex items-center gap-2.5">
-            <Users size={16} className={cn("transition-colors", activeTab === 'companies' ? "text-indigo-600" : "text-zinc-400 group-hover:text-zinc-600")} />
-            <span>Companies</span>
-          </div>
-        </button>
-
-        <button
-          onClick={() => onTabChange('settings')}
-          className={cn(
-            "w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-150 group text-[13px] font-medium outline-none",
-            activeTab === 'settings' ? "bg-zinc-100 text-zinc-900" : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900"
-          )}
-        >
-          <div className="flex items-center gap-2.5">
-            <Settings size={16} className={cn("transition-colors", activeTab === 'settings' ? "text-indigo-600" : "text-zinc-400 group-hover:text-zinc-600")} />
-            <span>Settings</span>
-          </div>
-        </button>
       </nav>
 
       <div className="p-3 border-t border-[#eaeaea]">
         <button 
           onClick={onLogout}
-          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-zinc-500 hover:bg-rose-50 hover:text-rose-600 transition-colors text-[13px] font-medium group"
+          className="w-full flex items-center gap-2.5 px-4 py-2 rounded-md text-zinc-500 hover:bg-rose-50 hover:text-rose-600 transition-colors text-[13px] font-medium group"
         >
           <LogOut size={16} className="text-zinc-400 group-hover:text-rose-500 transition-colors" />
           <span>Logout</span>

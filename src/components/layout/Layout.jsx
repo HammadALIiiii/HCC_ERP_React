@@ -7,14 +7,12 @@ import { cn } from '../../utils/cn';
 const Layout = ({ children, activeTab, onTabChange, onLogout, user }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Automatically handle drawer state on navigation
-  useEffect(() => {
-    if (activeTab === 'overview') {
+  const handleTabChange = (tabId) => {
+    onTabChange(tabId);
+    if (tabId !== 'overview') {
       setIsDrawerOpen(false);
-    } else {
-      setIsDrawerOpen(true);
     }
-  }, [activeTab]);
+  };
 
   const isOverview = activeTab === 'overview';
 
@@ -29,11 +27,11 @@ const Layout = ({ children, activeTab, onTabChange, onLogout, user }) => {
             : "relative h-full bg-white",
           isOverview 
             ? (!isDrawerOpen ? "-translate-x-full opacity-0" : "translate-x-0 opacity-100")
-            : (!isDrawerOpen ? "w-0 opacity-0 border-transparent" : "w-56 opacity-100 border-r border-[#eaeaea]")
+            : (!isDrawerOpen ? "w-0 opacity-0 border-transparent" : "w-64 opacity-100 border-r border-[#eaeaea]")
         )}
       >
-        <div className="w-56 h-full">
-          <Sidebar activeTab={activeTab} onTabChange={onTabChange} onLogout={onLogout} user={user} />
+        <div className="w-64 h-full">
+          <Sidebar activeTab={activeTab} onTabChange={handleTabChange} onLogout={onLogout} user={user} />
         </div>
       </div>
 
@@ -54,6 +52,7 @@ const Layout = ({ children, activeTab, onTabChange, onLogout, user }) => {
         <Header 
           activeTab={activeTab} 
           onToggleSidebar={() => setIsDrawerOpen(!isDrawerOpen)} 
+          onTabChange={handleTabChange}
           showBrand={!isDrawerOpen} 
           user={user}
         />

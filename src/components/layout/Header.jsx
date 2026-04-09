@@ -1,7 +1,9 @@
 import React from 'react';
 import { Search, Bell, Command, ChevronDown, Menu, ChevronRight } from 'lucide-react';
 
-const Header = ({ activeTab, onToggleSidebar, showBrand = true, user }) => {
+const Header = ({ activeTab, onToggleSidebar, onTabChange, showBrand = true, user }) => {
+  const isOverview = activeTab === 'overview';
+  
   const getTitle = () => {
     const titles = {
       overview: 'Module Overview',
@@ -31,13 +33,26 @@ const Header = ({ activeTab, onToggleSidebar, showBrand = true, user }) => {
   return (
     <header className="h-14 bg-white/80 backdrop-blur-[12px] border-b border-[#eaeaea] sticky top-0 z-30 flex items-center justify-between px-6 flex-shrink-0">
       <div className="flex items-center gap-4 text-sm">
-        <button 
-          onClick={onToggleSidebar}
-          className="p-2 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-all active:scale-95 flex items-center justify-center border border-zinc-200 bg-white shadow-sm"
-          title="Toggle Navigation"
-        >
-          <Menu size={18} />
-        </button>
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={onToggleSidebar}
+            className="p-2 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-all active:scale-95 flex items-center justify-center border border-zinc-200 bg-white shadow-sm"
+            title="Toggle Navigation"
+          >
+            <Menu size={18} />
+          </button>
+
+          {!isOverview && (
+            <button 
+              onClick={() => onTabChange('overview')}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-zinc-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all text-[12px] font-medium border border-transparent hover:border-indigo-100 group"
+              title="Back to Overview"
+            >
+              <ChevronRight size={14} className="rotate-180 group-hover:-translate-x-0.5 transition-transform" />
+              <span>Overview</span>
+            </button>
+          )}
+        </div>
         
         {/* Persistent Branding */}
         {showBrand && (
@@ -48,6 +63,7 @@ const Header = ({ activeTab, onToggleSidebar, showBrand = true, user }) => {
         )}
 
         <div className="flex items-center gap-2 ml-1">
+          {(!isOverview && !showBrand) && <div className="w-px h-4 bg-zinc-200 mr-2"></div>}
           <h2 className="font-semibold text-zinc-500 text-[13px] uppercase tracking-wider">{getTitle()}</h2>
         </div>
       </div>

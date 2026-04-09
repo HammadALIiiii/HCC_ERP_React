@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,6 +6,14 @@ import { cn } from '../../utils/cn';
 
 const Layout = ({ children, activeTab, onTabChange, onLogout, user }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const mainRef = useRef(null);
+
+  // Auto-scroll to top on tab change
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+  }, [activeTab]);
 
   const handleTabChange = (tabId) => {
     onTabChange(tabId);
@@ -57,7 +65,7 @@ const Layout = ({ children, activeTab, onTabChange, onLogout, user }) => {
           user={user}
         />
         
-        <main className="flex-1 overflow-y-auto px-8 py-8 custom-scrollbar">
+        <main ref={mainRef} className="flex-1 overflow-y-auto px-8 py-8 custom-scrollbar">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}

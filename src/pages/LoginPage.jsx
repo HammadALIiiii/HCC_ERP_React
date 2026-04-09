@@ -170,26 +170,6 @@ const LoginPage = ({ onLogin }) => {
               </button>
             </form>
 
-            {/* Demo Credentials Helper */}
-            <div className="mt-8 p-4 bg-zinc-50 border border-zinc-200 rounded-xl relative overflow-hidden">
-              <div className="flex flex-col items-center gap-3 relative z-10">
-                <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-[0.2em]">Demo Access Credentials</span>
-                <div className="flex items-center gap-6">
-                  <div className="flex flex-col items-center">
-                    <span className="text-[11px] font-bold text-zinc-900">admin</span>
-                    <span className="text-[10px] text-zinc-400 font-mono">admin123</span>
-                  </div>
-                  <div className="w-px h-5 bg-zinc-200" />
-                  <div className="flex flex-col items-center">
-                    <span className="text-[11px] font-bold text-zinc-900">hcc</span>
-                    <span className="text-[10px] text-zinc-400 font-mono">hcc_erp</span>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute top-0 right-0 p-1 opacity-[0.03] select-none pointer-events-none">
-                <ShieldCheck size={40} />
-              </div>
-            </div>
           </motion.div>
         </div>
 
